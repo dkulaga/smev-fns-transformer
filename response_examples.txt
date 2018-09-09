@@ -1,0 +1,30 @@
+Если от СМЭВ пришел корректный ответ (статус RESPONSE):
+{
+	"responseNumber" : "1234567890",
+	"messageId" : "7cd80f99-8202-11e8-acb2-00ff0bffbc97"
+}
+
+Если от СМЭВ пришел статус (статус STATUS):
+{
+	"description" : "Описание статуса ответа",
+	"messageId" : "7cd80f99-8202-11e8-acb2-00ff0bffbc97"
+}
+
+Если от СМЭВ пришел отказ (статус REJECT):
+{
+	"rejects" : [
+		{
+			"code" : "код",
+			"description" : "описание"
+		},
+		{
+			"code" : "код",
+			"description" : "описание"
+		},
+		{
+			"code" : "код",
+			"description" : "описание"
+		}
+	]
+	"messageId" : "7cd80f99-8202-11e8-acb2-00ff0bffbc97"
+}

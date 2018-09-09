@@ -1,0 +1,14 @@
+# порт, на котором будет запущен сервис
+server:
+  port: 8089
+
+# адрес сервиса СМЭВ-адаптера
+adapter:
+    service:
+        url: http://localhost:8080/Smev3Adapter
+
+# адрес сервиса ВИС для приема ответа
+transmitter:
+    service:
+        url: http://192.168.1.201:8093/gen/receiver.php
+
