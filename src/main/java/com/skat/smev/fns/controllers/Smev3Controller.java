@@ -21,7 +21,7 @@ public class Smev3Controller {
 
     /**
      * Метод преобразования и отправки запроса от ВИС и отправки в СМЭВ-адаптер
-     * @param request модель запроса в формате JSON
+     * @param request модель запроса Документов в ФНС в формате JSON
      * @return  возвращает сведения об успешности отправки запроса
      * @throws Exception
      */
@@ -31,15 +31,35 @@ public class Smev3Controller {
     }
 
     /**
+     * Метод преобразования и отправки запроса от ВИС и отправки в СМЭВ-адаптер
+     * @param request модель запроса Статусов в ФНС в формате JSON
+     * @return  возвращает сведения об успешности отправки запроса
+     * @throws Exception
+     */
+    @PostMapping("/statuses/request")
+    public String sendStatusesRequest(@RequestBody RequestModel request) throws Exception {
+        return smev3Service.sendSTATDOKRequest(request);
+    }
+
+    /**
      * Метод для приема ответа от СМЭВ-адаптера, его парсинга и отправки в ВИС
-     * @param adapterResponse модель ответа от СМЭВ-адаптера
+     * @param adapterResponse модель ответа от СМЭВ-адаптера по Документам ФНС
      * @return сведения об успешной отправке либо об ошибке отправки
      * @throws Exception
      */
         @PostMapping("/docs/response")
     public String sendDocResponse(@RequestBody AdapterResponseModel adapterResponse) throws Exception {
-        return smev3Service.sendResponse(adapterResponse);
+        return smev3Service.sendPRDDOCResponse(adapterResponse);
     }
 
-
+    /**
+     * Метод для приема ответа от СМЭВ-адаптера, его парсинга и отправки в ВИС
+     * @param adapterResponse модель ответа от СМЭВ-адаптера по Статусам ФНС
+     * @return сведения об успешной отправке либо об ошибке отправки
+     * @throws Exception
+     */
+    @PostMapping("/statuses/response")
+    public String sendStatusResponse(@RequestBody AdapterResponseModel adapterResponse) throws Exception {
+        return smev3Service.sendSTATDOCResponse(adapterResponse);
+    }
 }

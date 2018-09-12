@@ -32,10 +32,13 @@ public class AttachmentModel {
 
 	@Override
 	public String toString() {
-		return "{" +
-				"type='" + type + '\'' +
-				", name='" + name + '\'' +
-				", content='" + content + '\'' +
-				'}';
+		String serialize = String.format("{ type : %s,name : %s,content : %s}", type, name, content);
+		return serialize;
+
+		//return "{" +
+		//		"type='" + type + '\'' +
+		//		", name='" + name + '\'' +
+		//		", content='" + content + '\'' +
+		//		'}';
 	}
 }

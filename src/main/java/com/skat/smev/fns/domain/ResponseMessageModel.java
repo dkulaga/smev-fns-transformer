@@ -7,6 +7,7 @@ public class ResponseMessageModel extends BaseMessageModel {
 	private String requestId;
 	private String fnsRequestId;
 	private String code;
+	private String statusDoc;
 	private List<String> attachments;
 
 	public String getRequestId() {
@@ -30,6 +31,14 @@ public class ResponseMessageModel extends BaseMessageModel {
 	}
 
 	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getStatusDoc() {
+		return code;
+	}
+
+	public void setStatusDoc(String code) {
 		this.code = code;
 	}
 

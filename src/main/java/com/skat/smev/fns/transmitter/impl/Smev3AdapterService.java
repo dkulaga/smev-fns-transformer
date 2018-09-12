@@ -1,14 +1,12 @@
 package com.skat.smev.fns.transmitter.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skat.smev.fns.domain.AdapterRequestModel;
 import com.skat.smev.fns.domain.AttachmentModel;
 import com.skat.smev.fns.transmitter.RestException;
 import com.skat.smev.fns.util.HttpUtil;
-import com.skat.smev.fns.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -45,19 +43,18 @@ public class Smev3AdapterService {
     public String sendRequest(String xml, List<AttachmentModel> attachments) throws JSONException, JsonProcessingException {
         final String sendRequestUrl = serviceUrl + "/smev3/request";
         final ResponseEntity<String> response;
-        final JSONObject request = new JSONObject();
-        request.put("xml", xml);
+        final AdapterRequestModel adapterRequestModel = new AdapterRequestModel();
+        adapterRequestModel.setXml(xml);
         if(!StringUtils.isEmpty(attachments)){
-            ObjectMapper mapper = new ObjectMapper();
-
-            request.put("attachments", mapper.writeValueAsString(attachments));
+            adapterRequestModel.setAttachments(attachments);
         }
         try {
             LOGGER.info("Send request to adapter");
             LOGGER.info("URL: " + sendRequestUrl);
             LOGGER.info("Request: POST");
             LOGGER.info("Body: " + xml);
-            response = restTemplate.exchange(sendRequestUrl, HttpMethod.POST, HttpUtil.getEntity(request.toString()), String.class);
+
+            response = restTemplate.exchange(sendRequestUrl, HttpMethod.POST, HttpUtil.getEntity(adapterRequestModel), String.class);
             LOGGER.info("Response: " + response.getBody());
             return response.getBody();
         } catch (RestClientException ex) {
