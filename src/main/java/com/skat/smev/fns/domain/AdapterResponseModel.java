@@ -19,6 +19,8 @@ public class AdapterResponseModel {
     /* Тело ответа от сервиса вида сведений (xml в base64) */
     private String response;
 
+    private List<String> attachments;
+
     public String getMessageId() {
         return messageId;
     }
@@ -51,6 +53,14 @@ public class AdapterResponseModel {
         this.response = response;
     }
 
+    public List<String> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<String> attachments) {
+        this.attachments = attachments;
+    }
+
     @Override
     public String toString() {
         return "AdapterResponseModel{" +
@@ -58,6 +68,7 @@ public class AdapterResponseModel {
                 ", description='" + description + '\'' +
                 ", rejects=" + rejects +
                 ", response='" + response + '\'' +
+                ", attachments='" + attachments + '\'' +
                 '}';
     }
 }

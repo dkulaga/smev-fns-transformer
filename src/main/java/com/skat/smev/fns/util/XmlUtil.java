@@ -5,6 +5,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 
 /**
  *  Вспомогательный класс для работы с XML
@@ -42,10 +43,10 @@ public class XmlUtil {
 	}
 
 	public static <T> T unmarshal(String xml, Class<T> type)
-			throws JAXBException {
+			throws JAXBException, UnsupportedEncodingException {
 		JAXBContext context = JAXBContext.newInstance(type);
 		Unmarshaller unmarshaller = context.createUnmarshaller();
-		InputStream is = new ByteArrayInputStream(xml.getBytes());
+		InputStream is = new ByteArrayInputStream(xml.getBytes("UTF-8"));
 		return unmarshaller.unmarshal(new StreamSource(is), type).getValue();
 	}
 

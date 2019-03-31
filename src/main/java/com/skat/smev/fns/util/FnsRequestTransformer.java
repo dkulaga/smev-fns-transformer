@@ -39,6 +39,7 @@ public class FnsRequestTransformer {
             responseMessageModel.setFnsRequestId(response.getИдЗапросФНС());
             responseMessageModel.setCode(response.getКодОбраб());
             responseMessageModel.setMessageId(adapterResponseModel.getMessageId());
+            responseMessageModel.setAttachments(adapterResponseModel.getAttachments());
             return responseMessageModel;
         } else if(adapterResponseModel.getRejects() != null && !adapterResponseModel.getRejects().isEmpty()){
             return createRejectMessageModel(adapterResponseModel);
@@ -52,7 +53,7 @@ public class FnsRequestTransformer {
         com.skat.smev.fns.model.statuses.ObjectFactory docsOjectFactory = new com.skat.smev.fns.model.statuses.ObjectFactory();
         STATDOKREGRequest statdokregRequest = docsOjectFactory.createSTATDOKREGRequest();
         statdokregRequest.setИдЗапрос(model.getRequestId());
-        statdokregRequest.setИдЗапросФНС(model.getRegType());
+        statdokregRequest.setИдЗапросФНС(model.getFnsRequestId());
         return statdokregRequest;
     }
 
@@ -74,6 +75,7 @@ public class FnsRequestTransformer {
             responseMessageModel.setFnsRequestId(response.getИдЗапросФНС());
             responseMessageModel.setStatusDoc(response.getСтатусДок());
             responseMessageModel.setMessageId(adapterResponseModel.getMessageId());
+            responseMessageModel.setAttachments(adapterResponseModel.getAttachments());
             return responseMessageModel;
         } else if(adapterResponseModel.getRejects() != null && !adapterResponseModel.getRejects().isEmpty()){
             return createRejectMessageModel(adapterResponseModel);

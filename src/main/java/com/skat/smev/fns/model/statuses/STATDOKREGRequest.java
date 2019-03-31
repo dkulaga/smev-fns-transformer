@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "STATDOKREGRequest")
+@XmlRootElement(name = "STATDOKREGRequest", namespace = "urn://x-artefacts-fns-statdokreg/root/311-40/4.0.2")
 public class STATDOKREGRequest {
 
     @XmlAttribute(name = "\u0418\u0434\u0417\u0430\u043f\u0440\u043e\u0441", required = true)
